@@ -27,16 +27,28 @@ function displayBook(bookTitle, bookAuthor, bookPages, bookRead) {
     const bookAuthorCell = document.createElement('td');
     const bookPagesCell = document.createElement('td');
     const bookReadCell = document.createElement('td');
+    const bookDelete = document.createElement('td');
+    const deleteBtn = document.createElement('button');
     bookTitleCell.textContent = bookTitle;
     bookAuthorCell.textContent = bookAuthor;
     bookPagesCell.textContent = bookPages;
     bookReadCell.textContent = bookRead;
+    deleteBtn.textContent = 'x';
+    deleteBtn.addEventListener('click', (e) => deleteBook(e));
+    bookDelete.append(deleteBtn);
     bookRow.classList.add('book');
     bookRow.appendChild(bookTitleCell);
     bookRow.appendChild(bookAuthorCell);
     bookRow.appendChild(bookPagesCell);
     bookRow.appendChild(bookReadCell);
+    bookRow.appendChild(bookDelete);
     table.appendChild(bookRow);
+}
+
+function deleteBook(e) {
+    index = e.target.parentNode.parentNode.rowIndex - 1;
+    myLibrary.splice(index, 1);
+    table.deleteRow(index);
 }
 
 let button = document.getElementById('modal-opener');
@@ -64,7 +76,6 @@ form.addEventListener('submit', function(e) {
     let bookAuthor = document.querySelector('.book-author').value;
     let bookPages = document.querySelector('.book-pages').value;
     let bookRead = document.querySelector('.book-read').checked;
-    console.log(bookTitle, bookAuthor, bookPages, bookRead);
     addBookToLibrary(bookTitle, bookAuthor, bookPages, bookRead);
     displayBook(bookTitle, bookAuthor, bookPages, bookRead);
 })
