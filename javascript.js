@@ -13,21 +13,30 @@ function addBookToLibrary(bookTitle, bookAuthor, bookPages, bookRead) {
 }
 
 const library = document.querySelector('.library');
+const table = document.querySelector('.table-body');
 
 function displayLibrary() {
     for (const book of myLibrary) {
-        const bookElement = document.createElement('div');
-        bookElement.classList.add('book');
-        bookElement.textContent = book.title + book.author + book.pages;
-        library.appendChild(bookElement);
+        displayBook(book.title, book.author, book.pages, book.read)
     }
 }
 
 function displayBook(bookTitle, bookAuthor, bookPages, bookRead) {
-    const bookElement = document.createElement('div');
-    bookElement.classList.add('book');
-    bookElement.textContent = bookTitle + bookAuthor + bookPages + bookRead;
-    library.appendChild(bookElement);
+    const bookRow = document.createElement('tr');
+    const bookTitleCell = document.createElement('td');
+    const bookAuthorCell = document.createElement('td');
+    const bookPagesCell = document.createElement('td');
+    const bookReadCell = document.createElement('td');
+    bookTitleCell.textContent = bookTitle;
+    bookAuthorCell.textContent = bookAuthor;
+    bookPagesCell.textContent = bookPages;
+    bookReadCell.textContent = bookRead;
+    bookRow.classList.add('book');
+    bookRow.appendChild(bookTitleCell);
+    bookRow.appendChild(bookAuthorCell);
+    bookRow.appendChild(bookPagesCell);
+    bookRow.appendChild(bookReadCell);
+    table.appendChild(bookRow);
 }
 
 let button = document.getElementById('modal-opener');
