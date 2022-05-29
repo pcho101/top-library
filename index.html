@@ -12,7 +12,19 @@
         <h1>Library</h1>
     </header>
     <div class="library">
-        
+        <button id="modal-opener">NEW BOOK</button>
+        <div class="modal">
+            <div class="modal-content">
+                <form action="#" id="book-form">
+                    <input type="text" class="book-title" placeholder="Title*" required>
+                    <input type="text" class="book-author" placeholder="Author*" required>
+                    <input type="number" class="book-pages" min="1" placeholder="Pages*" required>
+                    <label for="read">Finished Reading?</label>
+                    <input type="checkbox" class="book-read" name="read" id="read">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>      
     </div>
     <script src="javascript.js"></script>
 </body>
