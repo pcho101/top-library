@@ -29,13 +29,20 @@ function displayBook(bookTitle, bookAuthor, bookPages, bookRead) {
     const bookReadCell = document.createElement('td');
     const bookDelete = document.createElement('td');
     const deleteBtn = document.createElement('button');
+    const readBtn = document.createElement('button');
     bookTitleCell.textContent = bookTitle;
     bookAuthorCell.textContent = bookAuthor;
     bookPagesCell.textContent = bookPages;
-    bookReadCell.textContent = bookRead;
+    // bookReadCell.textContent = bookRead;
+
+    readBtn.textContent = bookRead ? 'Y' : 'N';
+    readBtn.addEventListener('click', (e) => toggleRead(e));
+    bookReadCell.append(readBtn);
+
     deleteBtn.textContent = 'x';
     deleteBtn.addEventListener('click', (e) => deleteBook(e));
     bookDelete.append(deleteBtn);
+
     bookRow.classList.add('book');
     bookRow.appendChild(bookTitleCell);
     bookRow.appendChild(bookAuthorCell);
@@ -49,6 +56,17 @@ function deleteBook(e) {
     index = e.target.parentNode.parentNode.rowIndex - 1;
     myLibrary.splice(index, 1);
     table.deleteRow(index);
+}
+
+Book.prototype.toggle = function() {
+    this.read = this.read ? false : true;
+}
+
+function toggleRead(e) {
+    index = e.target.parentNode.parentNode.rowIndex - 1;
+    book = myLibrary[index]
+    book.toggle();
+    e.target.textContent = book.read ? 'Y' : 'N';
 }
 
 let button = document.getElementById('modal-opener');
