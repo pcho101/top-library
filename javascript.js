@@ -1,3 +1,8 @@
+const table = document.querySelector('.table-body');
+const button = document.getElementById('modal-opener');
+const modal = document.querySelector('.modal');
+const form = document.getElementById('book-form');
+
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -7,13 +12,14 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+Book.prototype.toggle = function() {
+    this.read = this.read ? false : true;
+}
+
 function addBookToLibrary(bookTitle, bookAuthor, bookPages, bookRead) {
     const newBook = new Book(bookTitle, bookAuthor, bookPages, bookRead);
     myLibrary.push(newBook);
 }
-
-const library = document.querySelector('.library');
-const table = document.querySelector('.table-body');
 
 function displayLibrary() {
     for (const book of myLibrary) {
@@ -30,14 +36,13 @@ function displayBook(bookTitle, bookAuthor, bookPages, bookRead) {
     const bookDelete = document.createElement('td');
     const deleteBtn = document.createElement('button');
     const readBtn = document.createElement('button');
+
     bookTitleCell.textContent = bookTitle;
     bookAuthorCell.textContent = bookAuthor;
     bookPagesCell.textContent = bookPages;
 
     readBtn.textContent = bookRead ? 'Y' : 'N';
-    if (bookRead) {
-        readBtn.classList.add('read');
-    }
+    if (bookRead) readBtn.classList.add('read');
     readBtn.addEventListener('click', (e) => toggleRead(e));
     bookReadCell.append(readBtn);
 
@@ -60,10 +65,6 @@ function deleteBook(e) {
     table.deleteRow(index);
 }
 
-Book.prototype.toggle = function() {
-    this.read = this.read ? false : true;
-}
-
 function toggleRead(e) {
     index = e.target.parentNode.parentNode.rowIndex - 1;
     book = myLibrary[index]
@@ -72,8 +73,17 @@ function toggleRead(e) {
     e.target.classList.toggle('read');
 }
 
-let button = document.getElementById('modal-opener');
-let modal = document.querySelector('.modal');
+function openModal() {
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    modal.style.display = 'none';
+}
+
+function clearModal() {
+    form.reset();
+}
 
 button.addEventListener('click', openModal);
 window.addEventListener('click', function(e) {
@@ -81,15 +91,6 @@ window.addEventListener('click', function(e) {
         closeModal();
     }
 });
-
-function openModal() {
-    modal.style.display = 'block';
-}
-function closeModal() {
-    modal.style.display = 'none';
-}
-
-let form = document.getElementById('book-form');
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -99,6 +100,8 @@ form.addEventListener('submit', function(e) {
     let bookRead = document.querySelector('.book-read').checked;
     addBookToLibrary(bookTitle, bookAuthor, bookPages, bookRead);
     displayBook(bookTitle, bookAuthor, bookPages, bookRead);
+    closeModal();
+    clearModal();
 })
 
 testBook1 = new Book('ATOTC', 'Dickens', 489, true);
