@@ -1,7 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700');
+
+* {
+    font-family: 'Work Sans', sans-serif;
+    margin: auto;
+    background-color: #f5d0fe;
+}
+
+header {
+    background-color: #581c87;
+}
+
+h1 {
+    font-size: 2.3rem;
+    text-align: center;
+    padding: 20px;
+    color: #fefce8;
+    background-color: inherit;
+}
+
+h2 {
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 20px;
+    color: #fefce8;
+    background-color: inherit;
+}
+
 .modal {
     display: none;
     position: fixed;
     z-index: 1;
+    padding-top: 20vh;
     left: 0;
     top: 0;
     width: 100%;
@@ -12,29 +41,47 @@
 }
 
 .modal-content {
-    background-color: white;
     margin: auto;
     padding: 20px;
     width: min-content;
     text-align: center;
+    border-radius: 6px;
 }
 
+.form-header {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+
 .book-table {
-    border: 2px solid rgb(200, 200, 200);
+    border-spacing: 0px;
     letter-spacing: 1px;
     font-size: 0.8rem;
+    margin-top: 25px;
 }
 
 td, th {
-    border: 1px solid rgb(200, 200, 200);
+    padding: 10px 20px;
+    text-align: left;
 }
 
 th {
-    background-color: rgb(235, 235, 235);
-}
-
-td {
-    text-align: center;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: white;
+    background-color: #4bcdc7;
 }
 
 tr:nth-child(even) td {
@@ -42,5 +89,82 @@ tr:nth-child(even) td {
 }
 
 tr:nth-child(odd) td {
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(240, 240, 240);
+}
+
+button {
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 50%;
+    border: 4px solid #e91e63;
+    color: #e91e63;
+    cursor: pointer;
+    padding: 0px;
+    box-sizing: content-box;
+}
+
+button:hover {
+    border: 4px solid #be0241;
+    color: #be0241;
+}
+
+.read {
+    border: 4px solid #1c7a44;
+    color: #1c7a44;
+}
+
+.read:hover {
+    border: 4px solid #0f4225;
+    color: #0f4225;
+}
+
+input {
+    padding: 10px;
+    margin: 10px 0px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #888888;
+}
+
+#modal-opener {
+    font-size: 2rem;
+    height: 36px;
+    width: 36px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 4px solid #4bcdc7;
+    color: #4bcdc7;
+    cursor: pointer;
+    padding: 10px;
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+}
+
+#modal-opener:hover {
+    border: 4px solid #2d7a77;
+    color: #2d7a77;
+    background-color: #4bcdc7;
+}
+
+button[type="submit"] {
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px 40px;
+    width: min-content;
+    height: min-content;
+    background-color: #4bcdc7;
+}
+
+button[type="submit"]:hover {
+    background-color: #2d7a77;
 }

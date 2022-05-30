@@ -10,6 +10,7 @@
 <body>
     <header>
         <h1>Library</h1>
+        <h2>Simple Library App</h2>
     </header>
     <div class="library">
         <table class="book-table">
@@ -25,15 +26,18 @@
             <tbody class="table-body">
             </tbody>
         </table>
-        <button id="modal-opener">NEW BOOK</button>
+        <button id="modal-opener">+</button>
         <div class="modal">
             <div class="modal-content">
                 <form action="#" id="book-form">
+                    <div class="form-header">Add New Book</div>
                     <input type="text" class="book-title" placeholder="Title*" required>
                     <input type="text" class="book-author" placeholder="Author*" required>
                     <input type="number" class="book-pages" min="1" placeholder="Pages*" required>
-                    <label for="read">Finished Reading?</label>
-                    <input type="checkbox" class="book-read" name="read" id="read">
+                    <div class="form-row">
+                        <label for="read">Finished Reading?</label>
+                        <input type="checkbox" class="book-read" name="read" id="read">
+                    </div>
                     <button type="submit">Submit</button>
                 </form>
             </div>

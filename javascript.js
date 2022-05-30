@@ -33,13 +33,15 @@ function displayBook(bookTitle, bookAuthor, bookPages, bookRead) {
     bookTitleCell.textContent = bookTitle;
     bookAuthorCell.textContent = bookAuthor;
     bookPagesCell.textContent = bookPages;
-    // bookReadCell.textContent = bookRead;
 
     readBtn.textContent = bookRead ? 'Y' : 'N';
+    if (bookRead) {
+        readBtn.classList.add('read');
+    }
     readBtn.addEventListener('click', (e) => toggleRead(e));
     bookReadCell.append(readBtn);
 
-    deleteBtn.textContent = 'x';
+    deleteBtn.textContent = 'X';
     deleteBtn.addEventListener('click', (e) => deleteBook(e));
     bookDelete.append(deleteBtn);
 
@@ -67,6 +69,7 @@ function toggleRead(e) {
     book = myLibrary[index]
     book.toggle();
     e.target.textContent = book.read ? 'Y' : 'N';
+    e.target.classList.toggle('read');
 }
 
 let button = document.getElementById('modal-opener');
@@ -98,9 +101,9 @@ form.addEventListener('submit', function(e) {
     displayBook(bookTitle, bookAuthor, bookPages, bookRead);
 })
 
-testBook1 = new Book('ASOIAF','Martin',700,false);
-testBook2 = new Book('LOTD','Tolkien',500,false);
-testBook3 = new Book('OFOTCN','Kesey',300,true);
-testBook4 = new Book('TKAM','Harper',200,true);
+testBook1 = new Book('ATOTC', 'Dickens', 489, true);
+testBook2 = new Book('GWTW', 'Mitchell', 1037, false);
+testBook3 = new Book('1984', 'Orwell', 328, true);
+testBook4 = new Book('TKAM', 'Lee', 281, false);
 myLibrary.push(testBook1, testBook2, testBook3, testBook4);
 displayLibrary();
